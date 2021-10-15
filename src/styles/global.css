@@ -1,8 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@layer Components {
+@layer components {
     .navBtn {
         @apply text-red-400 h-6 cursor-pointer transition-all duration-100 ease-out;
+    }
+    .btn {
+        @apply h-8 cursor-pointer;
     }
 }

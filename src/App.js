@@ -4,7 +4,7 @@ import Feed from './Components/Feed';
 
 function App() {
   return (
-    <div className="">
+    <div className="bg-gray-50 h-screen overflow-y-scroll scrollbar-hide">
       
       {/* Header */}
       <Header />

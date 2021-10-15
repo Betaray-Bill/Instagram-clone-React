@@ -8,7 +8,7 @@ function Header() {
                 <div className="flex justify-between items-center max-w-6xl h-24 mx-5 xl:mx-auto">
 
                     {/* Left */}
-                    <div className="relative hidden lg:inline-grid  w-24 cursor-pointer">
+                    <div className="relative hidden lg:inline-grid w-24 cursor-pointer">
                         <img src="https://links.papareact.com/ocw" alt=""/>
                     </div>
 
@@ -32,17 +32,17 @@ function Header() {
 
                     {/* Right */}
                     <div className="flex justify-end items-center space-x-4">
-                        <HomeIcon className="hidden h-8 md:inline-flex cursor-pointer hover:scale-125 transition-all duration-100 ease-out "/>
+                        <HomeIcon className="hidden h-8 md:inline-flex cursor-pointer transform hover:scale-125 transition-all duration-100 ease-out "/>
                         <MenuIcon className="h-6 w-10 md:hidden cursor-pointer"/>
-                        <div className="relative hidden h-8 md:inline-flex cursor-pointer hover:scale-125 transition-all duration-100 ease-out">
-                            <PaperAirplaneIcon className="realtive hidden h-8 md:inline-flex rotate-45 cursor-pointer hover:scale-125 transition-all duration-100 ease-out"/>
+                        <div className="relative hidden h-8 md:inline-flex cursor-pointer transform hover:scale-125 transition-all duration-100 ease-out">
+                            <PaperAirplaneIcon className="realtive hidden h-8 md:inline-flex transform cursor-pointer hover:scale-125 transition-all duration-100 ease-out rotate-45"/>
                             <div className="absolute -top-2 -right-1 animate-bounce bg-red-500 rounded-full flex justify-center items-center p-2 text-white w-5 h-5">
                                 4
                             </div>
                         </div>
-                        <PlusCircleIcon className="hidden h-8 md:inline-flex cursor-pointer hover:scale-125 transition-all duration-100 ease-out "/>
-                        <UserGroupIcon className="hidden h-8 md:inline-flex cursor-pointer hover:scale-125 transition-all duration-100 ease-out "/>
-                        <HeartIcon className="hidden h-8 md:inline-flex cursor-pointer hover:scale-125 transition-all duration-100 ease-out "/>
+                        <PlusCircleIcon className="hidden h-8 md:inline-flex cursor-pointer transform hover:scale-125 transition-all duration-100 ease-out "/>
+                        <UserGroupIcon className="hidden h-8 md:inline-flex cursor-pointer transform hover:scale-125 transition-all duration-100 ease-out "/>
+                        <HeartIcon className="hidden h-8 md:inline-flex cursor-pointer transform hover:scale-125 transition-all duration-100 ease-out "/>
 
                         <img 
                             src="https://lh3.googleusercontent.com/ogw/ADea4I5c1ORZj4OY-xMtoYuQouuHkzFj5VwtnUTQVNsTzQ=s32-c-mo" 
@@ -54,18 +54,18 @@ function Header() {
                 </div>
 
             </div>
-            <div className="absolute h-10 shadow-sm border-t pt-1 bg-white w-full bottom-0 md:hidden">
+            <div className="absolute h-10 shadow-sm border-t pt-1 bg-white w-full bottom-0 md:hidden z-50">
                 <div className="relative flex justify-between items-start mx-2">
-                    <HomeIcon className="h-8 w-10 cursor-pointer"/>
+                    <HomeIcon className="h-8 w-10 cursor-pointer transform hover:scale-125 transition-all duration-100 ease-out "/>
                     <div className="relative h-8 md:inline-flex cursor-pointer hover:scale-125 transition-all duration-100 ease-out">
-                        <PaperAirplaneIcon className="relative h-8 md:inline-flex rotate-45 cursor-pointer hover:scale-125 transition-all duration-100 ease-out"/>
+                        <PaperAirplaneIcon className="relative h-8 md:inline-flex cursor-pointer hover:scale-125 transition-all duration-100 ease-out transform rotate-45"/>
                         <div className="absolute -top-2 -right-1 animate-bounce bg-red-500 rounded-full flex justify-center items-center p-2 text-white w-5 h-5">
                             4
                         </div>
                     </div>
-                    <PlusCircleIcon className="h-8 w-10 cursor-pointer"/>  
-                    <UserGroupIcon className="h-8 w-10 cursor-pointer"/>
-                    <HeartIcon className="h-8 w-10 cursor-pointer"/>
+                    <PlusCircleIcon className="h-8 w-10 cursor-pointer transform hover:scale-125 transition-all duration-100 ease-out "/>  
+                    <UserGroupIcon className="h-8 w-10 cursor-pointer transform hover:scale-125 transition-all duration-100 ease-out "/>
+                    <HeartIcon className="h-8 w-10 cursor-pointer transform hover:scale-125 transition-all duration-100 ease-out "/>
                 </div>
             </div>
         </div>
