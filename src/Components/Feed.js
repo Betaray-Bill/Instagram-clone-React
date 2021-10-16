@@ -4,7 +4,10 @@ import Posts from './Posts'
 import Stories from './Stories'
 import Suggestions from './Suggestions'
 
-function Feed() {
+function Feed({ user }) {
+
+    console.log("Feed",user)
+
     return (
         <main className="grid grid-cols-1 md:grid-cols-2 md:max-w-3xl
             xl:grid-cols-3 xl:max-w-6xl m-auto">
@@ -15,7 +18,7 @@ function Feed() {
 
             <section className="hidden xl:inline-grid md:col-span-1">
                 <div className="fixed">
-                    <MiniProfile />
+                    <MiniProfile user={user}/>
                     <Suggestions />
                 </div>
             </section>

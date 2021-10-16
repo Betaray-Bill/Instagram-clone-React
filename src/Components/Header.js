@@ -1,7 +1,18 @@
 import React from 'react'
 import { SearchIcon,PlusCircleIcon,UserGroupIcon,HeartIcon,PaperAirplaneIcon,MenuIcon,HomeIcon } from '@heroicons/react/outline'
+import { GoogleAuthProvider, signInWithPopup,  getAuth } from "firebase/auth"
 
-function Header() {
+
+function Header({ user_prof }) {
+
+    const auth = getAuth();
+    const googleAuthProvider = new GoogleAuthProvider();
+
+    const signInwithGoogle  = () => {
+        console.log("clicked")
+        return signInWithPopup(auth, googleAuthProvider)
+    }
+
     return (
         <div>
             <div className="shadow-sm border-b bg-white sticky top-0 z-50">
@@ -43,12 +54,17 @@ function Header() {
                         <PlusCircleIcon className="hidden h-8 md:inline-flex cursor-pointer transform hover:scale-125 transition-all duration-100 ease-out "/>
                         <UserGroupIcon className="hidden h-8 md:inline-flex cursor-pointer transform hover:scale-125 transition-all duration-100 ease-out "/>
                         <HeartIcon className="hidden h-8 md:inline-flex cursor-pointer transform hover:scale-125 transition-all duration-100 ease-out "/>
-
-                        <img 
-                            src="https://lh3.googleusercontent.com/ogw/ADea4I5c1ORZj4OY-xMtoYuQouuHkzFj5VwtnUTQVNsTzQ=s32-c-mo" 
-                            alt="Profile" 
-                            className="rounded-full h-10 cursor-pointer"            
-                        />
+                        
+                        {   
+                            !user_prof ?
+                                <button className="text-blue-400 text-sm font-semibold hover:bg-blue-400  hover:text-white  px-4 py-2 rounded-md transition-all duration-150 ease-out" onClick={signInwithGoogle}>Sign In</button>
+                            :
+                                <img 
+                                    src={user_prof} 
+                                    alt="Profile" 
+                                    className="rounded-full h-10 cursor-pointer"            
+                                />
+                        }
                     </div>
 
                 </div>
