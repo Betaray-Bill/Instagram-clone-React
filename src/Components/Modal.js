@@ -25,7 +25,6 @@ function Modal({user}) {
         reader.onload = (readerEvent) => {
             setselectedfile(readerEvent.target.result)
         }
-        console.log(selectedfile)
     }
 
     const uploadPost = async() => {
@@ -38,13 +37,12 @@ function Modal({user}) {
             profileImg:user.photoURL,
             timestamps: serverTimestamp()
         })
-        console.log("New document added : ",docRef.id)
 
-        const imageRef = ref(storage, `posts/${docRef.id}/image`)
+        const imageRef = ref(storage,`posts/${docRef.id}/image`)
         await uploadString(imageRef, selectedfile, "data_url").then(async snapshot => {
             const downloadedUrl = await getDownloadURL(imageRef)
-
-            await updateDoc(doc(db, "posts", docRef.id), {
+            console.log(downloadedUrl);
+            await  updateDoc(doc(db, "posts", docRef.id), {
                 image: downloadedUrl
             })
         })

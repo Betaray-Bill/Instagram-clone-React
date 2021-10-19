@@ -12,19 +12,12 @@ function App() {
   const [users, setusers] = useState([])
 
   useEffect(() => {
-    console.log("meow 1")
-    console.log(auth)
-    // const user_in = onAuthStateChanged(auth)
     onAuthStateChanged(auth, (user) => {
-      console.log('AuthChange Detected', user)
        if (user) {
-        console.log(user)
         setusers(user)
       } else {
         console.log("No user")
       }})
-    console.log("meow")
-    
   })
 
   return (

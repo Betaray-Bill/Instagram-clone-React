@@ -6,7 +6,6 @@ function MiniProfile({ user }) {
 
     const sign_Out = () => {
         signOut(auth).then(() => {
-            console.log("Signed Out")
         })
         window.location.reload()
     }

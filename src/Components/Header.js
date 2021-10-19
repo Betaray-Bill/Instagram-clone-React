@@ -12,7 +12,6 @@ function Header({ user_prof }) {
     const provider = new GoogleAuthProvider();
 
     const signInwithGoogle  = () => {
-        console.log("clicked")
         signInWithPopup(auth, provider)
     }
 
