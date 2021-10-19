@@ -1,17 +1,21 @@
-import { getAuth, signOut } from "firebase/auth";
+import { signOut } from '@firebase/auth'
+import React from 'react'
+import {auth} from "../firebase"
 
 function MiniProfile({ user }) {
 
-    const auth = getAuth()
     const sign_Out = () => {
-        signOut(auth)
+        signOut(auth).then(() => {
+            console.log("Signed Out")
+        })
+        window.location.reload()
     }
 
 
     return (
         <div className="flex justify-between items-center mt-14 ml-10">
-            <img 
-                src={user.photoURL ? user.photoURL : `https://www.pikpng.com/pngl/m/16-168770_user-iconset-no-profile-picture-icon-circle-clipart.png`} 
+            <img    
+                src={user.photoURL} 
                 alt="" 
                 className="rounded-full border p-[2px] w-16 h-16 object-cover"
             />

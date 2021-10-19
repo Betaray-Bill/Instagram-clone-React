@@ -1,4 +1,6 @@
-import React from 'react'
+import { collection, onSnapshot, orderBy, query } from '@firebase/firestore';
+import React, { useEffect, useState } from 'react'
+import { db } from '../firebase';
 import Post from './Post'
 
 function Posts() {
@@ -30,17 +32,29 @@ function Posts() {
         }
     ]
 
+
+    const [posts, setposts] = useState([]);
+
+    useEffect(() => {
+        onSnapshot(query(collection(db, "posts"), orderBy("timestamp","desc")), 
+            (snapshot) => {
+                setposts(snapshot.docs)
+            })
+    }, [db]);
+
+    console.log("Posts",posts)
+
     return (
         <div>
             {
-                DUMMY_DATA.map((post) => (
+                posts.map((post) => (
                     <Post 
                         id={post.id}
                         key={post.id}
-                        username={post.username}
-                        img={post.img}
-                        userImg={post.userImg}
-                        caption={post.caption}
+                        username={post.data().username}
+                        img={post.data().profileImg}
+                        userImg={post.data().image}
+                        caption={post.data().caption}
                     />
                 ))
             }

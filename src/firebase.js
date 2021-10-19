@@ -1,24 +1,24 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp, getAuth, getApp, getApps } from "firebase/app";
+import { initializeApp, getApp, getApps } from "firebase/app"
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage"
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-// Your web app's Firebase configuration
+
 const firebaseConfig = {
-    apiKey: "AIzaSyDG9S2dT_nTk0XHFQIkyevnUBrkqpg6PdE",
-    authDomain: "instagram-clone-meow.firebaseapp.com",
-    projectId: "instagram-clone-meow",
-    storageBucket: "instagram-clone-meow.appspot.com",
-    messagingSenderId: "831063784318",
-    appId: "1:831063784318:web:e89f72ae6b3220cc0b112f"
+    apiKey: "AIzaSyDiKwlW0XAcKezJEsn4cENpkUDAsKXmd48",
+    authDomain: "instagramclone-meow.firebaseapp.com",
+    projectId: "instagramclone-meow",
+    storageBucket: "instagramclone-meow.appspot.com",
+    messagingSenderId: "920601001029",
+    appId: "1:920601001029:web:9190284b20586a4f15772c",
+    measurementId: "G-Y9GD0SM427"
 };
 
-// Initialize Firebase
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp()
-const db = getFirestore()
+
 const storage = getStorage()
+const db = getFirestore()
 const auth = getAuth()
+export { firebaseConfig }
 
 export { app, db, storage, auth }

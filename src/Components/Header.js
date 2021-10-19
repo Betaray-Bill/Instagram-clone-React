@@ -1,16 +1,19 @@
 import React from 'react'
 import { SearchIcon,PlusCircleIcon,UserGroupIcon,HeartIcon,PaperAirplaneIcon,MenuIcon,HomeIcon } from '@heroicons/react/outline'
-import { GoogleAuthProvider, signInWithPopup,  getAuth } from "firebase/auth"
-
+import { useRecoilState } from 'recoil'
+import { modalstate } from '../atoms/modalAtom'
+import {  signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import {auth} from '../firebase'
 
 function Header({ user_prof }) {
+    
+    const [open, setopen] = useRecoilState(modalstate)
 
-    const auth = getAuth();
-    const googleAuthProvider = new GoogleAuthProvider();
+    const provider = new GoogleAuthProvider();
 
     const signInwithGoogle  = () => {
         console.log("clicked")
-        return signInWithPopup(auth, googleAuthProvider)
+        signInWithPopup(auth, provider)
     }
 
     return (
@@ -51,7 +54,10 @@ function Header({ user_prof }) {
                                 4
                             </div>
                         </div>
-                        <PlusCircleIcon className="hidden h-8 md:inline-flex cursor-pointer transform hover:scale-125 transition-all duration-100 ease-out "/>
+                        <PlusCircleIcon 
+                            onClick={() => setopen(true)}
+                            className="hidden h-8 md:inline-flex cursor-pointer transform hover:scale-125 transition-all duration-100 ease-out "                                
+                        />
                         <UserGroupIcon className="hidden h-8 md:inline-flex cursor-pointer transform hover:scale-125 transition-all duration-100 ease-out "/>
                         <HeartIcon className="hidden h-8 md:inline-flex cursor-pointer transform hover:scale-125 transition-all duration-100 ease-out "/>
                         
@@ -79,7 +85,10 @@ function Header({ user_prof }) {
                             4
                         </div>
                     </div>
-                    <PlusCircleIcon className="h-8 w-10 cursor-pointer transform hover:scale-125 transition-all duration-100 ease-out "/>  
+                    <PlusCircleIcon
+                        onClick={() => setopen(true)} 
+                        className="h-8 w-10 cursor-pointer transform hover:scale-125 transition-all duration-100 ease-out"
+                    />  
                     <UserGroupIcon className="h-8 w-10 cursor-pointer transform hover:scale-125 transition-all duration-100 ease-out "/>
                     <HeartIcon className="h-8 w-10 cursor-pointer transform hover:scale-125 transition-all duration-100 ease-out "/>
                 </div>
