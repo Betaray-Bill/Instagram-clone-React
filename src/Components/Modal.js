@@ -41,7 +41,6 @@ function Modal({user}) {
         const imageRef = ref(storage,`posts/${docRef.id}/image`)
         await uploadString(imageRef, selectedfile, "data_url").then(async snapshot => {
             const downloadedUrl = await getDownloadURL(imageRef)
-            console.log(downloadedUrl);
             await  updateDoc(doc(db, "posts", docRef.id), {
                 image: downloadedUrl
             })

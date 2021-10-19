@@ -1,3 +1,4 @@
+import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp } from "@firebase/firestore"
 import {
     BookmarkIcon,
     ChatIcon,
@@ -6,10 +7,37 @@ import {
     HeartIcon,
     PaperAirplaneIcon
 } from "@heroicons/react/outline"
-// import { HeartIcon as HeartIconFilled } from "@heroicons/react/solid"
-
+import { useEffect, useState } from "react"
+import { db } from "../firebase"
+import { HeartIcon as HeartIconFilled } from "@heroicons/react/solid"
+import Moment from "react-moment"
 
 function Post({ username, caption, id, userImg, img }) {
+    const [comment, setcomment] = useState("")
+    const [comments, setcomments] = useState([])
+    
+    useEffect(() => {
+        const unsubscribe = onSnapshot(query(collection(db, "posts",id, "comments"), orderBy("timestamps", "desc")), snapshot => {
+            setcomments(snapshot.docs)
+        })
+        return unsubscribe
+    }, [db]);
+
+    const sendComment = async(e) => {
+        e.preventDefault()
+
+        const commenTosend = comment
+        setcomment('')
+
+        await addDoc(collection(db, "posts",id, "comments"),{
+            comment: commenTosend,
+            username: username,
+            userImg : userImg,
+            timestamps:serverTimestamp()
+        })
+    }
+
+
     return (
         <div className="bg-white my-7 border rounded-md">
             
@@ -40,12 +68,50 @@ function Post({ username, caption, id, userImg, img }) {
             </div>
 
             {/* Comments */}
-
+            {
+                comments.length > 0 && (
+                    <div className="ml-10 h-20 overflow-y-scroll scrollbar-thumb-black scrollbar-thin">
+                        {
+                            comments.map(comment => (
+                                <div key={comment.id} className="flex items-center space-x-2 mb-3">
+                                    <img
+                                     src={comment.data().userImg} alt="" 
+                                     className="h-7 rounded-full"
+                                    />
+                                    <p className="text-sm flex-1">
+                                        <span className="font-bold">
+                                        {comment.data().username}
+                                        </span>{ " "}
+                                        {comment.data().comment}
+                                    </p>
+                                    <Moment interval={1000} fromNow className="pr-5 text-xs">
+                                        {comment.data().timestamp?.toDate()}
+                                    </Moment>
+                                </div>
+                            ))
+                        }
+                    </div>
+                )
+            }
             {/* Form - Input Box */}
             <form className="flex justify-between items-center p-4">
                 <EmojiHappyIcon className="btn transform hover:scale-125"/>
-                <input type="text" className="border-none flex-1 focus:ring-0 outline-none" placeholder="Add a Comment..."/>
-                <button className="font-semibold bg-gray-200 px-4 py-2 rounded-sm hover:bg-blue-200 hover:text-white transition-all duration-150 ease-in-out ">Post</button>
+                <input 
+                    type="text" 
+                    className="border-none flex-1 focus:ring-0 outline-none" 
+                    placeholder="Add a Comment..."
+                    value={comment}
+                    onChange={(e) => setcomment(e.target.value)}
+                />
+                <button 
+                    className="font-semibold bg-gray-200 px-4 py-2 rounded-sm 
+                    hover:bg-blue-200 hover:text-white transition-all duration-150 ease-in-out "
+                    type="submit"
+                    disabled={!comment.trim()}
+                    onClick={sendComment}
+                >
+                    Post
+                </button>
             </form>
 
         </div>
