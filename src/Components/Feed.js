@@ -11,7 +11,7 @@ function Feed({ user }) {
             xl:grid-cols-3 xl:max-w-6xl m-auto">
             <section className="col-span-2">
                 <Stories />
-                <Posts />
+                <Posts user={user}/>
             </section>
 
             <section className="hidden xl:inline-grid md:col-span-1">

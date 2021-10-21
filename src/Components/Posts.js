@@ -5,7 +5,7 @@ import { db } from '../firebase';
 
 import Post from './Post'
 
-function Posts() {
+function Posts({user}) {
 
     const [posts, setposts] = useState([]);
 
@@ -28,6 +28,8 @@ function Posts() {
                         img={post.data().image}
                         userImg={post.data().profileImg}
                         caption={post.data().captoin}
+                        user={user}
+
                     />
                 ))
             }
